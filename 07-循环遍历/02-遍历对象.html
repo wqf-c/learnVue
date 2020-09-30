@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in info">{{item}}</li>
+    </ul>
+
+    <ul>
+<!--        加上key数组中间加入元素时dom元素复用-->
+        <li v-for="(value, key) in info" :key="key+' ==== '+value">{{key}} ==== {{value}}</li>
+    </ul>
+
+    <ul>
+        <li v-for="(value, key, index) in info">{{index}} ==== {{key}} ==== {{value}}</li>
+    </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world",
+            info:{
+                name:"qqq",
+                height:1.8,
+                weight:160
+            }
+        }
+    })
+</script>
+</body>
+</html>

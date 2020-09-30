@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--    无参的时候可以省略()-->
+    <button @click="func1">btn1</button>
+<!--    有一个参数省略()，则将event对象传给该参数-->
+    <button @click="func2">btn2</button>
+<!--    加$代表浏览器event对象-->
+    <button @click="func3('abc', $event)">btn3</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world"
+        },
+        methods:{
+            func1(){
+                console.log("function1");
+            },
+            func2(event){
+                console.log(event);
+            },
+            func3(abc, event){
+                console.log(abc, event)
+            }
+        }
+    })
+</script>
+</body>
+</html>
