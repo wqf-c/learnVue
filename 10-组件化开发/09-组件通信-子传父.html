@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <cpn @catclick="catclick"></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <button v-for="item in categories" @click="btnclick(item)">{{item.name}}</button>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+    const cpn = {
+        template: '#cpn',
+        data(){
+            return {
+                categories:[
+                    {id: 1, 'name': 'aaa'},
+                    {id: 2, 'name': 'bbb'},
+                    {id: 3, 'name': 'ccc'},
+                    {id: 4, 'name': 'ddd'},
+                ]
+            };
+        },
+        props:{
+
+        },
+        methods:{
+            btnclick(item){
+                console.log("zi click");
+                console.log(item);
+                this.$emit("catclick", item);
+            }
+        }
+    }
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world"
+        },
+        components:{
+            cpn
+        },
+        methods: {
+            catclick(item){
+                console.log("fu click")
+                console.log(item)
+            }
+        }
+    })
+</script>
+</body>
+</html>
