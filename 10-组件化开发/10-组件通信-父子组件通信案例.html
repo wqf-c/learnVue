@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>{{number1}}</div>
+    <cpn :num1="number1" @numberChange="numberchange"></cpn>
+</div>
+<template id="cpn">
+    <input :value="dnumber1" v-on:input="numberChange"></input>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    const cpn = {
+        template: "#cpn",
+        data(){
+            return{
+                dnumber1: this.num1
+            }
+        },
+        props:{
+            num1: Number
+        },
+        methods:{
+            numberChange(event){
+                this.dnumber1 = event.target.value;
+                this.$emit("numberchange", this.dnumber1);
+            }
+        }
+    }
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"hello world",
+            number1: 10
+        },
+        components:{
+            cpn
+        },
+        methods: {
+            numberchange(value){
+                this.number1 = parseInt(value)
+            }
+        }
+    })
+</script>
+</body>
+</html>
